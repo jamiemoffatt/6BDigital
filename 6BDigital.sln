@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6BDigital", "6BDigital\6BDigital.csproj", "{5AFA9269-9383-4232-8654-B0C5AFAEDE6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "6BDigital", "6BDigital\6BDigital.csproj", "{5AFA9269-9383-4232-8654-B0C5AFAEDE6D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6BDigital.Data", "6BDigital.Data\6BDigital.Data.csproj", "{A47AEB6B-8768-4D39-82B7-56EDBFCC09F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "6BDigital.Data", "6BDigital.Data\6BDigital.Data.csproj", "{A47AEB6B-8768-4D39-82B7-56EDBFCC09F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6BDigital.Application", "6BDigital.Application\6BDigital.Application.csproj", "{E2B7A2F3-13C3-4E9B-A6FA-49DF6E33A9C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "6BDigital.Application", "6BDigital.Application\6BDigital.Application.csproj", "{E2B7A2F3-13C3-4E9B-A6FA-49DF6E33A9C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6BDigital.Domain", "6BDigital.Domain\6BDigital.Domain.csproj", "{4006CFFC-C802-4D70-B29B-837AEF9E2ECC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "6BDigital.Domain", "6BDigital.Domain\6BDigital.Domain.csproj", "{4006CFFC-C802-4D70-B29B-837AEF9E2ECC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6BDigital.DbUp", "6BDigital.DbUp\6BDigital.DbUp.csproj", "{F214B830-6116-4584-AE5E-306932E52A58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "6BDigital.DbUp", "6BDigital.DbUp\6BDigital.DbUp.csproj", "{F214B830-6116-4584-AE5E-306932E52A58}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Presentation", "01 - Presentation", "{38E3E437-1A7C-49AC-B541-7C560BD7FB21}"
 EndProject

@@ -1,0 +1,56 @@
+﻿@page "/NewAppointment"
+@using _6BDigital.Domain
+@using _6BDigital.Domain.Interfaces
+
+@inject IAppointmentApplication _appointmentApplication;
+
+<PageTitle>New Appointment</PageTitle>
+
+
+<EditForm Context="NewAppointmentForm" EditContext="editContext" OnValidSubmit="SubmitApointment">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+
+
+    <label class="mandatory" for="Name">Name</label>
+    <InputText id="Name" @bind-Value="appointment.Name" class="form-control" />
+
+    <label class="mandatory" for="Name">Date & Time</label>
+    <InputDate Type="InputDateType.DateTimeLocal" min="@DateTime.Now" id="DateTime" @bind-Value="appointment.DateTime" class="form-control" />
+
+    <label class="mandatory" for="Name">Issue</label>
+    <InputTextArea id="Issue" @bind-Value="appointment.Issue" class="form-control" />
+
+    <label class="mandatory" for="Name">Phone Number</label>
+    <InputText id="Issue" @bind-Value="appointment.ContactNumber" class="form-control" />
+
+    <label class="mandatory" for="Name">Email Address</label>
+    <InputText id="Email" @bind-Value="appointment.ContactEmail" class="form-control" />
+
+    <button type="submit" class="positive-button">Submit</button>
+
+
+</EditForm>
+
+@code {
+    private Appointment appointment;
+    private EditContext editContext;
+    private ValidationMessageStore? messageStore;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Refresh();
+        editContext = new(appointment);
+    }
+
+    void Refresh()
+    {       
+        appointment = new Appointment { DateTime = DateTime.Now };      
+    }
+
+    void SubmitApointment()
+    {      
+        _appointmentApplication.CreateAppointment(appointment);
+        Refresh();
+    }
+}

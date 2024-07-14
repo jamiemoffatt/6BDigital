@@ -7,4 +7,9 @@
     <RootNamespace>_6BDigital</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\6BDigital.Application\6BDigital.Application.csproj" />
+    <ProjectReference Include="..\6BDigital.Domain\6BDigital.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
