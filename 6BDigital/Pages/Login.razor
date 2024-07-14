@@ -11,14 +11,13 @@
 @inject NavigationManager _navigationManager
 @inject IUserApplication _userServise
 
-
 <EditForm Model="@user" OnValidSubmit="@ValidateUser">
 
     <label for="email-address">Email</label>
     <input id="email-address" class="form-control" @bind="user.UserName" placeholder="email address" />
 
     <label for="password">Password</label>
-    <input id="password" type="password" class="form-control" bind="user.Password" placeholder="password" />
+    <input id="password" type="password" class="form-control" @bind="user.Password" placeholder="password" />
 
 
     <input type="submit" class="col-start-2 form-button-confirm" value="Login" />

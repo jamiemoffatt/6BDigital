@@ -27,7 +27,14 @@ namespace _6BDigital.Application
         {
             ClaimsIdentity identity = new ClaimsIdentity();
 
-            string token = await _localStorageService.GetItemAsync<string>("AccessToken");
+            string token = null;
+            try
+            {
+                token = await _localStorageService.GetItemAsync<string>("AccessToken");
+            }
+            catch (InvalidOperationException)
+            {                
+            }            
 
             if (!string.IsNullOrWhiteSpace(token))
             {

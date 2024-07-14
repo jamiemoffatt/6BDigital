@@ -10,9 +10,16 @@ namespace _6BDigital.Application
 {
     public class UserApplication : IUserApplication
     {
-        public User AuthenticateUser(string userName, string passwrd)
+        private IUserData _userData;
+
+        public UserApplication(IUserData userData)
         {
-            return new User { Name = "Moff", UserName = userName };
+            _userData = userData;
+        }
+
+        public User AuthenticateUser(string userName, string password)
+        {
+            return _userData.AuthenticateUser(userName, password);
         }
     }
 }

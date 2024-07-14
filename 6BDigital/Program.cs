@@ -19,12 +19,14 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddBlazoredLocalStorage();
 
-
 builder.Services.AddSingleton<IAppointmentApplication, AppointmentApplication>();
 builder.Services.AddSingleton<IUserApplication, UserApplication>();
 
 
-builder.Services.AddSingleton<IAppointmentData, AppointmentData>(x => new AppointmentData(config.GetValue<string>("ConnectionString")));
+string connectionString = config.GetValue<string>("ConnectionString")!;
+
+builder.Services.AddSingleton<IAppointmentData, AppointmentData>(x => new AppointmentData(connectionString!));
+builder.Services.AddSingleton<IUserData, UserData>(x => new UserData(connectionString!));
 
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 
@@ -44,6 +46,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");

@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace _6BDigital.Domain.Interfaces
 {
-    public interface IUserApplication
+    public interface IUserData
     {
         User AuthenticateUser(string userName, string password);
-
     }
 }
