@@ -1,0 +1,51 @@
+﻿@page "/Appointments"
+@using Radzen.Blazor
+@using Radzen
+@using _6BDigital.Domain
+@using _6BDigital.Domain.Interfaces
+
+@inject IAppointmentApplication _appointmentApplication
+
+<PageTitle>Appointments</PageTitle>
+
+
+<AuthorizeView>
+    <Authorized>
+
+        <h1>Appointments</h1>
+
+        <RadzenDataGrid TItem="Appointment" Data="@appointments"
+                    AllowFiltering="true" FilterMode="FilterMode.Simple"LogicalFilterOperator="LogicalFilterOperator.And" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
+                    AllowPaging="true" PageSize="10" 
+                    AllowSorting="true" AllowMultiColumnSorting="true">
+            <Columns>
+                <RadzenDataGridColumn TItem="Appointment" Property="Name" Title="Name" />
+                <RadzenDataGridColumn TItem="Appointment" Property="DateTime" Title="Date & Time" />
+                <RadzenDataGridColumn TItem="Appointment" Property="Issue" Title="Issue" />
+                <RadzenDataGridColumn TItem="Appointment" Property="ContactNumber" Title="Phone Number" />
+                <RadzenDataGridColumn TItem="Appointment" Property="ContactEmail" Title="Email" />
+                <RadzenDataGridColumn TItem="Appointment" Property="ApprovedBy" Title="Approved By" />
+            </Columns>
+
+        </RadzenDataGrid>
+
+    </Authorized>
+    <NotAuthorized>
+        <p>Please sign in.</p>
+        <NavLink class="nav-link" href="login">
+            <span class="oi oi-list-rich" aria-hidden="true"></span> Login
+        </NavLink>
+    </NotAuthorized>
+</AuthorizeView>
+
+
+@code{
+
+    private List<Appointment> appointments;
+
+    protected override async Task OnInitializedAsync()
+    {
+        appointments = _appointmentApplication.GetAppointments().ToList();
+    }
+
+}

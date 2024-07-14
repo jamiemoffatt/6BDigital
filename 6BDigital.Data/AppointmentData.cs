@@ -30,5 +30,31 @@ namespace _6BDigital.Data
 
             }
         }
+
+        public IEnumerable<Appointment> GetAppointments(bool awaitingApprovalOnly = false)
+        {
+            using (var connection = new SqlConnection(_ConnectionString))
+            {
+                string sql =
+                    $@"SELECT 
+                            da.{nameof(Dat_Appointment.AppointmentId)}, 
+                            da.{nameof(Dat_Appointment.Name)},
+                            da.{nameof(Dat_Appointment.DateTime)},
+                            da.{nameof(Dat_Appointment.Issue)},
+                            da.{nameof(Dat_Appointment.ContactNumber)},
+                            da.{nameof(Dat_Appointment.ContactEmail)},
+                            du.{nameof(Dat_User.Name)} AS ApprovedBy,
+                            da.{nameof(Dat_Appointment.ApprovedDateTime)}
+                       FROM {nameof(Dat_Appointment)} da
+                       LEFT JOIN {nameof(Dat_User)} du ON da.{nameof(Dat_Appointment.ApprovedBy)} = du.{nameof(Dat_User.UserId)}
+                       WHERE da.{nameof(Dat_Appointment.ApprovedBy)} is null OR @{nameof(awaitingApprovalOnly)} = 0 ";
+
+                var parameters = new { awaitingApprovalOnly };
+
+                var result = connection.Query<Appointment>(sql, parameters);
+
+                return result;
+            }
+        }
     }
 }

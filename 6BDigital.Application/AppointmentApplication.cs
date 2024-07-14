@@ -17,5 +17,10 @@ namespace _6BDigital.Application
         {
             _data.CreateAppointment(appointment);
         }
+
+        public IEnumerable<Appointment> GetAppointments(bool awaitingApprovalOnly = false)
+        {
+            return _data.GetAppointments(awaitingApprovalOnly);
+        }
     }
 }

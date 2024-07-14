@@ -26,7 +26,7 @@ namespace _6BDigital.Domain
         [MaxLength(50), EmailAddress, Required, Display(Name = "Email")]
         public string ContactEmail { get; set; }
 
-        public int? ApprovedBy { get; set; }
+        public string ApprovedBy { get; set; }
 
         public DateTime? ApprovedDateTime { get; set; }
     }
