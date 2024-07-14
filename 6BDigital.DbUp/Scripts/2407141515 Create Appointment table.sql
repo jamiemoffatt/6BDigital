@@ -1,0 +1,11 @@
+CREATE TABLE Dat_Appointment 
+(
+	AppointmentId INT IDENTITY PRIMARY KEY, 
+	Name VARCHAR(50) NOT NULL, 
+	DateTime DATETIME NOT NULL, 
+	Issue VARCHAR(MAX) NOT NULL,
+	ContactNumber VARCHAR(20) NOT NULL,
+	ContactEmail VARCHAR(50) NOT NULL, 
+	ApprovedBy INT FOREIGN KEY REFERENCES Dat_User(UserId) NULL,
+	ApprovedDateTime DATETIME NULL 
+)
