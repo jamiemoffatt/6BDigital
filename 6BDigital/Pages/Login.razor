@@ -1,0 +1,68 @@
+﻿@page "/login"
+
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Components
+@using _6BDigital.Application
+@using _6BDigital.Domain
+@using _6BDigital.Domain.Interfaces
+
+@inject AuthenticationStateProvider _authenticationStateProvider
+@inject NavigationManager _navigationManager
+@inject IUserApplication _userServise
+
+
+<EditForm Model="@user" OnValidSubmit="@ValidateUser">
+
+    <label for="email-address">Email</label>
+    <input id="email-address" class="form-control" @bind="user.UserName" placeholder="email address" />
+
+    <label for="password">Password</label>
+    <input id="password" type="password" class="form-control" bind="user.Password" placeholder="password" />
+
+
+    <input type="submit" class="col-start-2 form-button-confirm" value="Login" />
+
+    <span class="col-12">@LoginMesssage</span>
+
+</EditForm>
+
+@code {
+
+    public string LoginMesssage { get; set; }
+
+    private AuthUser user;
+
+    ClaimsPrincipal claimsPrincipal;
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        user = new AuthUser();
+
+        claimsPrincipal = (await authenticationStateTask).User;
+
+        if (claimsPrincipal.Identity.IsAuthenticated)
+        {
+            _navigationManager.NavigateTo("/");
+        }
+    }
+
+    private async Task ValidateUser()
+    {
+        var returnedUser = _userServise.AuthenticateUser(user.UserName, user.Password);
+
+        if (returnedUser?.UserName != null)
+        {
+            await ((CustomAuthenticationStateProvider)_authenticationStateProvider).MarkUserAsAuthenticated(returnedUser);
+            _navigationManager.NavigateTo("/");
+        }
+        else
+        {
+            LoginMesssage = "Invalid username or password";
+        }
+    }
+
+}

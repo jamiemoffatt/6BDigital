@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="7.0.20" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\6BDigital.Data\6BDigital.Data.csproj" />
     <ProjectReference Include="..\6BDigital.Domain\6BDigital.Domain.csproj" />
   </ItemGroup>
